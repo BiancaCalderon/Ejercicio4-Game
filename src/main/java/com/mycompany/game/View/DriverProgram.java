@@ -3,8 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Project/Maven2/JavaApp/src/main/java/${packagePath}/${mainClassName}.java to edit this template
  */
 
-package com.mycompany.game;
+package com.mycompany.game.View;
 
+//import com.mycompany.game.Model;
+
+import com.mycompany.juego.Juego.Cascade;
+import com.mycompany.juego.Juego.Flame;
+import com.mycompany.juego.Juego.Groot;
+import com.mycompany.juego.Juego.Juego;
+import com.mycompany.juego.Juego.Thunder;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -17,11 +24,26 @@ import javax.swing.JFrame;
 public class DriverProgram {
 
     public static void main(String[] args) {
+        Flame flame = new Flame();
+        Cascade cascade = new Cascade();
+        Groot groot = new Groot();
+        Thunder thunder = new Thunder();
+        cascade.ataqueHidrobomba();
+        //cascade.ataqueKick();
+        groot.ataqueEnredar();
+        //groot.ataquePunch();
+        //groot.ataqueKick();
+        thunder.ataqueRayo();
+        //thunder.ataquePunch();
+        flame.ataqueLanzaLlamas();
+        flame.ataqueChispa();
+        //flame.ataquePunch();
+        
         JFrame window = new JFrame("JUEGO");
         Juego game = new Juego();
         window.add(game); //Agregar ventana y especificaciones
-        window.setSize(1300,400);
-        window.setLocation(700,200);
+        window.setSize(1300,600);
+        window.setLocation(400,200);
         window.setVisible(true);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
