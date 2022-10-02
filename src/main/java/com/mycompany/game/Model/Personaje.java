@@ -1,34 +1,44 @@
 
 package com.mycompany.game.Model;
-
+import java.util.Random;
 /**
- *
+ *POO
+ * Ejercicio 4, Modelación con Herencia
  * @author bianc
  */
 public class Personaje {
-    private String name;
-    private int Health;
-    private int atack;
-    private int defense;
-    private int Strength;
-    private int Aatack;
-    private int Adefense;
-    private int AStrength;
+    protected String name;
+    protected int Health;
+    protected int attack;
+    protected int defense;
+    protected int items;
+    protected int Aattack;
+    protected int Adefense;
+    protected int AStrength;
+    
+    public Personaje(){
+        name = "";
+        Health = 0;
+        attack = 0;
+        defense = 0;
+        items = 0;
+        
+    }
 /**
  * Declaramos atributos
  * @param name
  * @param Health
  * @param atack
  * @param defense
- * @param Strength 
+ * @param items 
  */
     
-    public Personaje(String name, int Health, int atack, int defense, int Strength) {
+    public Personaje(String name, int Health, int attack, int defense) {
         this.name = name;
         this.Health = Health;
-        this.atack = atack;
+        this.attack = attack;
         this.defense = defense;
-        this.Strength = Strength;
+        this.items = items;
         this.Adefense = Adefense;
         this.Adefense = Adefense;
         this.AStrength = AStrength;
@@ -55,35 +65,35 @@ public class Personaje {
     }
 
     public int getAtack() {
-        return atack;
+        return attack;
     }
 
     public void setAtack(int atack) {
-        this.atack = atack;
+        this.attack = atack;
     }
 
     public int getDefense() {
         return defense;
     }
 
+    public int getitems() {
+        return items;
+    }
+
+    public void setitems(int items) {
+        this.items = items;
+    }
+    
     public void setDefense(int defense) {
         this.defense = defense;
     }
 
-    public int getStrength() {
-        return Strength;
-    }
-
-    public void setStrength(int Strength) {
-        this.Strength = Strength;
-    }
-
     public int getAatack() {
-        return Aatack;
+        return Aattack;
     }
 
     public void setAatack(int Aatack) {
-        this.Aatack = Aatack;
+        this.Aattack = Aatack;
     }
 
     public int getAdefense() {
@@ -102,11 +112,29 @@ public class Personaje {
         this.AStrength = AStrength;
     }
 
+       /**
+     * Quien inicia según fuerza actual
+     * @param select
+     * @return 
+     */
+/**
+ * Generamos magnitud/cantidad de ataque
+ * @return 
+ */    
+public int Attack(){
+    Random rndm = new Random();
+    int QAttack = rndm.nextInt(attack)+1;
     
+    return QAttack;
+    }
+        
+public int Defense(){
+    Random rndm = new Random();
+    int QDefense = rndm.nextInt(defense)+1;
     
-    ///protected  void ataquePunch();
-    //protected  void ataqueKick();
-    //protected  void ataqueParalizar();
-    
-    
-}
+    return  QDefense;
+}    
+
+}  
+
+   

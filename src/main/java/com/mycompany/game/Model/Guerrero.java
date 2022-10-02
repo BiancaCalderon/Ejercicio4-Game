@@ -10,8 +10,8 @@ public class Guerrero extends Personaje {
         super();
     }
 
-    public Guerrero(String name, int Health, int attack, int defense, int items) {
-        super(name, Health, attack, defense, items);
+    public Guerrero(String name, int Health, int attack, int defense) {
+        super(name, Health, attack, defense);
     }
 
     /**
@@ -40,7 +40,7 @@ public class Guerrero extends Personaje {
     @Override
     public String toString(){
     return String.format("Guerrero: %s / Nivel de vida: %d" , name, Health);
-    }
-}    
+}   
+}
 
 
