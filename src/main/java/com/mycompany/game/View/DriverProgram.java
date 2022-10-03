@@ -1,23 +1,22 @@
 //Escape characters: https://stackoverflow.com/questions/1367322/what-are-all-the-escape-characters
 //instance of: https://www.programiz.com/java-programming/operators
+/**
+ *Pogramación Orientada a Objetos
+ * Ejercicio 4, Modelación con Herencia
+ * Prof: Moises Alonso
+ * @author Bianca Calderón
+ */
 package com.mycompany.game.View;
 
 
-import com.mycompany.game.Model.Enemies;
+
 import com.mycompany.game.Model.Exploradora;
 import com.mycompany.game.Model.Guerrero;
 import com.mycompany.game.Model.Personaje;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JFrame;
+import com.mycompany.game.View.DriverProgram;
 import java.util.Scanner;
 import java.util.Random;
 
-
-/**
- *
- * @author bianc
- */
 public class DriverProgram {
 public static Scanner keyboard = new Scanner(System.in);
 public static Personaje jugador; //Ya sea guerrero o exploradora

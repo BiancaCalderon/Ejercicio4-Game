@@ -1,12 +1,15 @@
 
 package com.mycompany.game.Model;
+import com.mycompany.game.Juego;
 import java.util.Random;
 /**
- *
- * @author bianc
+ *Pogramación Orientada a Objetos
+ * Ejercicio 4, Modelación con Herencia
+ * Prof: Moises Alonso
+ * @author Bianca Calderón
  */
 public class Guerrero extends Personaje {
-    public Guerrero(){
+    public Guerrero(Juego aThis){
         super();
     }
 
@@ -18,8 +21,8 @@ public class Guerrero extends Personaje {
      *Guerrero tiene una habilidad especial "Thunder"
      * @return
      */
-@Override
-    public int Attack(){
+
+    public int AttackTHUNDER(){
      int QAttack = super.Attack();
      Random rndm = new Random();
      int value = rndm.nextInt(100);

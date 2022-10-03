@@ -2,9 +2,10 @@
 package com.mycompany.game.Model;
 import java.util.Random;
 /**
- *POO
+ *Pogramación Orientada a Objetos
  * Ejercicio 4, Modelación con Herencia
- * @author bianc
+ * Prof: Moises Alonso
+ * @author Bianca Calderón
  */
 public class Personaje {
     protected String name;
@@ -64,11 +65,11 @@ public class Personaje {
         this.Health = Health;
     }
 
-    public int getAtack() {
+    public int getAttack() {
         return attack;
     }
 
-    public void setAtack(int atack) {
+    public void setAttack(int atack) {
         this.attack = atack;
     }
 
@@ -88,11 +89,11 @@ public class Personaje {
         this.defense = defense;
     }
 
-    public int getAatack() {
+    public int getAattack() {
         return Aattack;
     }
 
-    public void setAatack(int Aatack) {
+    public void setAattack(int Aatack) {
         this.Aattack = Aatack;
     }
 
@@ -112,11 +113,17 @@ public class Personaje {
         this.AStrength = AStrength;
     }
 
-       /**
-     * Quien inicia según fuerza actual
-     * @param select
+     /**
+     *
+     * @param damage
      * @return 
      */
+    
+public void DamageDealt(int damage){
+   Health -= damage;
+   if (Health < 0); //Evitar vida negativa
+   Health = 0;
+}
 /**
  * Generamos magnitud/cantidad de ataque
  * @return 
@@ -134,6 +141,12 @@ public int Defense(){
     
     return  QDefense;
 }    
+
+    public static class getHealth {
+
+        public getHealth() {
+        }
+    }
 
 }  
 
