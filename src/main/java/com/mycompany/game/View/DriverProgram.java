@@ -22,9 +22,117 @@ public class DriverProgram {
 public static Scanner keyboard = new Scanner(System.in);
 public static Personaje jugador; //Ya sea guerrero o exploradora
 public static Guerrero CPU;
+private static boolean JEFE = false; //Nivel
 
     public static void main(String[] args) {
         initPersonaje();
+        levels();
+        
+     while(jugador.getHealth() > 0 && CPU.getHealth() > 0) {
+         int attackplyr = 0, attackCPU = 0;
+         int defenseplyr = 0, defenseCPU = 0;
+         System.out.println("PELEA!");
+         System.out.println("-> Jugador: "+jugador);
+         System.out.println("-> Rival CPU: "+CPU);
+         int actionplyr = SelectionHabilidad();
+         System.out.println();
+         switch(actionplyr) {
+             case 1://ATACKS
+                 attackplyr = jugador.Attack();
+                 System.out.println("El ataque es: "+ attackplyr + "puntos!");
+                 break;
+             case 2: //DEFENSE
+                 defenseplyr = jugador.Defense();
+                 System.out.println("La defensa es de: "+ defenseplyr + "puntos!");
+                 break;
+             case 3: //Habilidad si es guerrero
+                 if (jugador instanceof Guerrero){
+                     attackplyr = ((Guerrero)jugador).AttackTHUNDER();
+                     System.out.println("Tiene un ataque THUNDER de: "+ attackplyr+"puntos!");
+                 }
+                 else{//habilidad si es exploradora
+                     attackplyr = ((Exploradora)jugador).ExplAttack();
+                     System.out.println("Tiene un ataque de: " +attackplyr+"puntos!");
+                 }
+                 break;
+             case 4:
+                 if (jugador instanceof Guerrero)
+                     System.out.println("No se puede efectuar acción, pasas turno");
+                 else
+                     ((Exploradora)jugador).HechizoCurar();
+                 break;
+                 default:
+                 System.out.println("No se puede efectuar acción, pierdes tu turno");
+         }
+         pause();
+         int ActionCPU;
+         if (JEFE)
+             ActionCPU = CPUJEFE(defenseplyr, attackplyr);
+         else 
+             ActionCPU = CPUEZ();
+         //Accion de la CPU
+         switch(ActionCPU){
+             case 1:
+                 attackCPU = CPU.Attack();
+                 break;
+             case 2:
+                 defenseCPU = CPU.Defense();
+                 break;
+             case 3:
+                 attackCPU = CPU.AttackTHUNDER();
+         }
+         pause();
+         //Segun acciones, verificamos daños
+         int damagedealtplyr = attackCPU - defenseplyr;
+         int damagedealtCPU = attackplyr - defenseCPU;
+         
+         if (damagedealtplyr > 0){
+             System.out.println(""+ jugador.getName()+ "recibió daño");
+             jugador.DamageDealt(damagedealtplyr);
+             if (jugador.getHealth() == 0);
+             System.out.println(""+jugador.getName()+ "Pierde! Ha muerto!! :p");
+         }
+         else {
+             if (ActionCPU != 2)
+                 System.out.println("" +jugador.getName()+ "bloquea el ataque contra" + CPU.getName());
+         }
+         if (damagedealtCPU > 0){
+             System.out.println(""+CPU.getName()+"recibió daños");
+             System.out.println(CPU.getName()+"pierde"+damagedealtCPU+ "puntos de vida");
+             CPU.DamageDealt(damagedealtCPU);
+             if (CPU.getHealth()== 0)
+                 System.out.println(""+CPU.getName()+"murio!");
+         }    
+        else {
+             if (actionplyr == 1 || actionplyr == 3){
+                 System.out.println(""+CPU.getName()+"bloquea a:"+jugador.getName());
+             }
+         }
+         pause();
+         
+         if (jugador instanceof Exploradora) {
+             if (((Exploradora)jugador).Curar()){
+             //Puede revivir si cura, pero no le servirá de mucho
+         if (jugador.getHealth()== 1)
+                 System.out.println(""+jugador.getName()+"resucitó ay!");
+         pause();
+         
+         }
+         
+     }
+     //Ganador
+     if (jugador.getHealth() > 0){
+         System.out.println("EL GANADOR ES: ");
+         System.out.println(jugador);
+     }
+     else if (CPU.getHealth() > 0){
+         System.out.println("EL GANADOR ES: ");
+     System.out.println(CPU);
+    
+   }else
+            System.out.println("No hay ganador, ambos jugadores han muerto");
+            System.out.println("FIN");
+}
     }
     
     private static void initPersonaje(){
@@ -90,10 +198,10 @@ public static Guerrero CPU;
     public static void pause(){
         System.out.println("/n/t/ENTER para continuar");
         keyboard.nextLine();
-
+    }
     //
-     while(jugador.getHealth() > 0 && CPU.getHealth() > 0) {
-     private static int SelectionHabilidad() {
+
+     private static int SelectionHabilidad(){
             System.out.println("/nTurno del jugador:  " + jugador.getName());
             System.out.println("1. ATACAR"); //Elegir poder a efectuar
             System.out.println("2. DEFENDER");
@@ -108,6 +216,16 @@ public static Guerrero CPU;
             return Integer.parseInt(keyboard.nextLine());     
         } 
   //Niveles dificultad CPU
+     
+     private static void levels(){
+         System.out.println("NIVELES: ");
+         System.out.println("1. Modo normal");
+         System.out.println("2. Modo JEFE");
+         System.out.println("Elije un nivel: ");
+         int level = Integer.parseInt(keyboard.nextLine());
+         if (level == 2)
+             JEFE = true;
+     }
      private static int CPUEZ(){
          Random rndm = new Random();
          //Guerrero: Atacar, defender, THUNDER
@@ -147,10 +265,11 @@ public static Guerrero CPU;
          
          Random rndm = new Random();
          return arrayActions[rndm.nextInt(10)];
-         
-         static void pause() {
-             System.out.println("ENTER para continuar");
-             keyboard.nextLine();
+
          }
+private static void pausa() {
+		System.out.println("ENTER para continuar");
+		keyboard.nextLine();
+	}
 
 }
