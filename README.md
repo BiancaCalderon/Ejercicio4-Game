@@ -1,2 +1,2 @@
 # Ejercicio4-Game
- Molecaión con herencia, creación juego
+ Modelacaión con herencia, creación juego
