@@ -2,7 +2,7 @@
 //instance of: https://www.programiz.com/java-programming/operators
 /**
  *Pogramación Orientada a Objetos
- * Ejercicio 4, Modelación con Herencia
+ * Ejercicio 5, Polimorfismo
  * Prof: Moises Alonso
  * @author Bianca Calderón
  */
@@ -10,18 +10,21 @@ package com.mycompany.game.View;
 
 
 
+import com.mycompany.game.Model.Acompanante;
 import com.mycompany.game.Model.Exploradora;
 import com.mycompany.game.Model.Guerrero;
 import com.mycompany.game.Model.Personaje;
-import com.mycompany.game.View.DriverProgram;
+
 import java.util.Scanner;
 import java.util.Random;
 
 public class DriverProgram {
 public static Scanner keyboard = new Scanner(System.in);
-public static Personaje jugador; //Ya sea guerrero o exploradora
+public static Personaje jugador; //Ya sea guerrero o exploradora o acompañante
 public static Guerrero CPU;
 private static boolean JEFE = false; //Nivel
+
+private static boolean Raidboss = false; //Nevo Jefe
 
     public static void main(String[] args) {
         initPersonaje();
@@ -49,7 +52,7 @@ private static boolean JEFE = false; //Nivel
                      attackplyr = ((Guerrero)jugador).AttackTHUNDER();
                      System.out.println("Tiene un ataque THUNDER de: "+ attackplyr+"puntos!");
                  }
-                 else{//habilidad si es exploradora
+                 else {//habilidad si es exploradora
                      attackplyr = ((Exploradora)jugador).ExplAttack();
                      System.out.println("Tiene un ataque de: " +attackplyr+"puntos!");
                  }
@@ -60,6 +63,7 @@ private static boolean JEFE = false; //Nivel
                  else
                      ((Exploradora)jugador).HechizoCurar();
                  break;
+
                  default:
                  System.out.println("No se puede efectuar acción, pierdes tu turno");
          }
@@ -140,6 +144,7 @@ private static boolean JEFE = false; //Nivel
         System.out.println("Jugadores: ");
         System.out.println("1. Guerrero");
         System.out.println("2. Exploradora");
+        System.out.println("3. Acompañante");
         
         System.out.println("Elija a su jugador...");
         int plyr = Integer.parseInt(keyboard.nextLine());
@@ -176,11 +181,15 @@ private static boolean JEFE = false; //Nivel
             Health = 1;
         else if (Health > 1000)
             Health = 1000;
-   
-        
+
+
+
         if (plyr == 1)
             jugador = new Guerrero(name, Health, attack, defense); //Elije guerrero
-        else jugador = new Exploradora(name, Health, attack, defense);//Elije exploradora
+        else if (plyr ==2)
+            jugador = new Exploradora(name, Health, attack, defense);//Elije exploradora
+        else if (plyr ==3)
+            jugador = new Personaje(name, Health, attack, defense);//Elije acompañante
         
         System.out.println("PERSONAJE: ");
         System.out.println(jugador);
@@ -220,10 +229,13 @@ private static boolean JEFE = false; //Nivel
          System.out.println("NIVELES: ");
          System.out.println("1. Modo normal");
          System.out.println("2. Modo JEFE");
+         System.out.println("3. Modo raidboss");
          System.out.println("Elije un nivel: ");
          int level = Integer.parseInt(keyboard.nextLine());
          if (level == 2)
              JEFE = true;
+         else if (level == 3)
+             Raidboss = true;
      }
      private static int CPUEZ(){
          Random rndm = new Random();
@@ -233,8 +245,8 @@ private static boolean JEFE = false; //Nivel
      /**
       * aqui la CPU dependiendo del ataque o defensa del jugador es como este reaccionará
       * @param attackplyr
-      * @param defensaplyr
-      * @return 
+      * @param defenseplyr
+      * @return
       */
      private static int CPUJEFE(int defenseplyr, int attackplyr){
          System.out.println("COMBATE AL JEFE!"); 

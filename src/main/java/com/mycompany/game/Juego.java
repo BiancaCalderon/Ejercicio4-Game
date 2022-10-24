@@ -20,7 +20,6 @@ public class Juego extends JPanel{
     
     Guerrero guerr = new Guerrero(this);
     Exploradora expl = new Exploradora(this);
-    Fondo fondo = new Fondo(this);
     
     static boolean juegoEnd=false;
     static boolean lossLife =false;

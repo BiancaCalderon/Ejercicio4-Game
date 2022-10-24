@@ -147,6 +147,29 @@ public int Defense(){
         public getHealth() {
         }
     }
+    class raidboss extends Personaje{
+        public  raidboss boss; //CPU
+        public raidboss(){
+            super();
+        }
+
+        public raidboss(String name, int Health, int attack, int defense) {
+            super(name, Health, attack, defense);
+        }
+    }
+    public class attack{
+        public void function(){
+            Personaje Pobject = new Personaje();
+            Pobject.DamageDealt();
+
+            raidboss Bobject = new raidboss();
+            Bobject.DamageDealt();
+
+        }
+    }
+
+    public void DamageDealt() {
+    }
 
 }  
 
