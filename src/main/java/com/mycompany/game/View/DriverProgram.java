@@ -20,7 +20,7 @@ import java.util.Random;
 
 public class DriverProgram {
 public static Scanner keyboard = new Scanner(System.in);
-public static Personaje jugador; //Ya sea guerrero o exploradora o acompañante
+public static Personaje jugador; //Ya sea guerrero o exploradora o acompanante
 public static Guerrero CPU;
 private static boolean JEFE = false; //Nivel
 
@@ -85,12 +85,12 @@ private static boolean Raidboss = false; //Nevo Jefe
                  attackCPU = CPU.AttackTHUNDER();
          }
          pause();
-         //Segun acciones, verificamos daños
+         //Segun acciones, verificamos danios
          int damagedealtplyr = attackCPU - defenseplyr;
          int damagedealtCPU = attackplyr - defenseCPU;
          
          if (damagedealtplyr > 0){
-             System.out.println(""+ jugador.getName()+ "recibió daño");
+             System.out.println(""+ jugador.getName()+ "recibió danio");
              jugador.DamageDealt(damagedealtplyr);
              if (jugador.getHealth() == 0);
              System.out.println(""+jugador.getName()+ "Pierde! Ha muerto!! :p");
@@ -100,7 +100,7 @@ private static boolean Raidboss = false; //Nevo Jefe
                  System.out.println("" +jugador.getName()+ "bloquea el ataque contra" + CPU.getName());
          }
          if (damagedealtCPU > 0){
-             System.out.println(""+CPU.getName()+"recibió daños");
+             System.out.println(""+CPU.getName()+"recibió danos");
              System.out.println(CPU.getName()+"pierde"+damagedealtCPU+ "puntos de vida");
              CPU.DamageDealt(damagedealtCPU);
              if (CPU.getHealth()== 0)
@@ -144,7 +144,7 @@ private static boolean Raidboss = false; //Nevo Jefe
         System.out.println("Jugadores: ");
         System.out.println("1. Guerrero");
         System.out.println("2. Exploradora");
-        System.out.println("3. Acompañante");
+        System.out.println("3. Acompanante");
         
         System.out.println("Elija a su jugador...");
         int plyr = Integer.parseInt(keyboard.nextLine());
@@ -189,7 +189,7 @@ private static boolean Raidboss = false; //Nevo Jefe
         else if (plyr ==2)
             jugador = new Exploradora(name, Health, attack, defense);//Elije exploradora
         else if (plyr ==3)
-            jugador = new Personaje(name, Health, attack, defense);//Elije acompañante
+            jugador = new Personaje(name, Health, attack, defense);//Elije acompanante
         
         System.out.println("PERSONAJE: ");
         System.out.println(jugador);
