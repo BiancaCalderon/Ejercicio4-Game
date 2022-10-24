@@ -158,15 +158,14 @@ public int Defense(){
         }
     }
     public class attack{
-        public void function(){
-            Personaje Pobject = new Personaje();
-            Pobject.DamageDealt();
-
+        public int function(){
             raidboss Bobject = new raidboss();
             Bobject.DamageDealt();
+            System.out.println(name+ "Utiliza ataque");
+            return (int) (attack*2);//raidboss mayor ataque
+        }
 
         }
-    }
 
     public void DamageDealt() {
     }
